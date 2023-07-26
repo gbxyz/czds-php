@@ -1,0 +1,22 @@
+{
+    "name": "gbxyz/czds",
+    "description": "PHP client for ICANN's Centralized Zone Data Service (CZDS)",
+    "type": "library",
+    "require": {
+        "pear/net_dns2": "*"
+    },
+    "authors": [
+        {
+            "name": "Gavin Brown",
+            "email": "gavin.brown@fastmail.uk"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^2.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
