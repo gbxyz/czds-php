@@ -60,7 +60,7 @@ echo $zone;
 
 ## Get an iterator
 
-This is useful for large zones. Instead of loading the entire zone into memory, you can an object can be iterated on:
+This is useful for large zones. Instead of loading the entire zone into memory, you get an object can be iterated on, which returns objects which are instances of the various `Net_DNS2_RR_*` classes.
 
 ```php
 
