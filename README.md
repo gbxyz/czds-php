@@ -58,7 +58,7 @@ $zone = $client->getZoneContents($zone);
 echo $zone;
 ```
 
-# Get an iterator
+## Get an iterator
 
 This is useful for large zones. Instead of loading the entire zone into memory, you can an object can be iterated on:
 
