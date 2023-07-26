@@ -28,6 +28,8 @@ $client = new gbxyz\czds\client;
 $client->login($username, $password);
 ```
 
+The CZDS API issues authentication tokens that are valid for 24 hours. These tokens are cached locally so this method will only incur am HTTP round trip once per day.
+
 ## Get a list of available zone files
 
 This returns an array of TLDs:
