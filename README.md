@@ -44,6 +44,10 @@ $zones = $client->getZones();
 $client->saveZone($zone, '/tmp/zonefile.txt');
 ```
 
+`$zone` should be a string containing the TLD name, e.g. `xyz`.
+
+If this fails an exception will be thrown.
+
 ## Get a file descriptor for a zone file
 
 ```php
