@@ -2,35 +2,71 @@
 
 This repository contains a simple client library for accessing [ICANN](https://icann.org)'s [Centralized Zone Data Service (CZDS)](https://czds.icann.org).
 
+You will need to create a user account on the CZDS, and request access to at least one TLD, for this to be useful!
+
 ## Installation
+
+Add the library as a dependency to your project using `composer`:
 
 ```
 composer require gbxyz/czds
 ```
 
-## Usage:
+## Usage
+
+Load the library into your code using Composer's autoload function:
 
 ```php
 require_once 'vendor/autoload.php';
+```
 
+## Create a client object
+
+```php
 $client = new gbxyz\czds\client;
 
 $client->login($username, $password);
+```
 
-// get a list of available zone files as an array
+## Get a list of available zone files
+
+This returns an array of TLDs:
+
+```php
 $zones = $client->getZones();
+```
 
-// save the zone to disk
-$client->saveZone($zones[0]);
+## Save a zone file to disk
 
-// get a handle to a zone file
-echo stream_get_contents($client->getZoneHandle($zones[1]));
+```php
+$client->saveZone($zone, '/tmp/zonefile.txt');
+```
 
-// get zone contents
-echo $client->getZoneContents($zones[2]);
+## Get a file descriptor for a zone file
 
-// get an iterator which returns Net_DNS2_RR_* objects
-foreach ($client->getZoneRRs($zones[3]) as $rr) {
+```php
+$fh = $client->getZoneHandle($zone);
+
+echo stream_get_contents($fh);
+```
+
+## Get the contents of a zone file
+
+```php
+$zone = $client->getZoneContents($zone);
+
+echo $zone;
+```
+
+# Get an iterator
+
+This is useful for large zones. Instead of loading the entire zone into memory, you can an object can be iterated on:
+
+```php
+
+$iterator = $client->getZoneRRs($zone);
+
+foreach ($iterator as $rr) {
     printf("Owner name: %s, TTL: %u, type: %s\n", $rr->name, $rr->ttl, $rr->type);
     echo (string)$rr;
 }
