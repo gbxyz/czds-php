@@ -2,6 +2,8 @@
 
 This repository contains a simple client library for accessing [ICANN](https://icann.org)'s [Centralized Zone Data Service (CZDS)](https://czds.icann.org).
 
+All gTLDs (top-level domains such as .com or .org) provide access to their DNS zone files via the CZDS.
+
 You will need to create a user account on the CZDS, and request access to at least one TLD, for this to be useful!
 
 ## Installation
@@ -28,7 +30,7 @@ $client = new gbxyz\czds\client;
 $client->login($username, $password);
 ```
 
-The CZDS API issues authentication tokens that are valid for 24 hours. These tokens are cached locally so this method will only incur am HTTP round trip once per day.
+The CZDS API issues authentication tokens that are valid for 24 hours. These tokens are cached locally so this method will only incur an HTTP round trip once per day.
 
 ## Get a list of available zone files
 
@@ -37,6 +39,8 @@ This returns an array of TLDs:
 ```php
 $zones = $client->getZones();
 ```
+
+This will return an array like `['foo', 'bar']`.
 
 ## Save a zone file to disk
 
